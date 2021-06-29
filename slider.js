@@ -5,8 +5,9 @@ let slider1 = {
     showNextBtn: document.querySelector('.show-next-btn'),
     slideImage: document.querySelector('.slide-img'),
     start: function(){
-        this.showPrewBtn.onclick = this.showPrewImg;
-        this.showNextBtn.onclick = this.showNextImg;
+        let that = this;
+        this.showPrewBtn.onclick = function(event) {that.showPrewImg(event)};
+        this.showNextBtn.onclick = function(event) {that.showNextImg(event)};
         this.imgesURLs.push('https://cdnimg.rg.ru/img/content/178/22/40/kotik_d_850.jpg');
         this.imgesURLs.push('https://i.pinimg.com/originals/f4/d2/96/f4d2961b652880be432fb9580891ed62.png');
         this.imgesURLs.push('https://ichef.bbci.co.uk/news/640/cpsprodpb/14A82/production/_116301648_gettyimages-1071204136.jpg');
@@ -16,11 +17,13 @@ let slider1 = {
     },
     showPrewImg: function(event){
         this.currentImageIndex--;
+        this.showNextBtn.disabled = false;
         this.slideImage.src = this.imgesURLs[this.currentImageIndex];
-        this.showPrewBtn.disabled = true;
+        if(this.currentImageIndex == 0) {this.showPrewBtn.disabled = true;}
     },
     showNextImg: function(event){
         this.currentImageIndex++;
+        this.showPrewBtn.disabled = false;
         this.slideImage.src = this.imgesURLs[this.currentImageIndex];
         if(this.currentImageIndex == (this.imgesURLs.length - 1)) {this.showNextBtn.disabled = true;}
     }
