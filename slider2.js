@@ -1,11 +1,16 @@
-let slider1 = {
+let slider2 = {
     imgesURLs: [],
     currentImageIndex: 0,
-    showPrewBtn: document.querySelector('.show-prew-btn'),
-    showNextBtn: document.querySelector('.show-next-btn'),
-    slideImage: document.querySelector('.slide-img'),
-    start: function(){
+    showPrewBtn: null,    //document.querySelector('.show-prew-btn'),
+    showNextBtn: null,    //document.querySelector('.show-next-btn'),
+    slideImage: null,     //document.querySelector('.slide-img'),
+    start: function(elClass){
         let that = this;
+        let clas = '.' + elClass;
+        let el = document.querySelector(clas);
+        this.showPrewBtn = el.querySelector('.show-prew-btn');
+        this.showNextBtn = el.querySelector('.show-next-btn');
+        this.slideImage = el.querySelector('.slide-img');
         this.showPrewBtn.onclick = function(event) {that.showPrewImg(event)};
         this.showNextBtn.onclick = function(event) {that.showNextImg(event)};
         this.imgesURLs.push('https://cdnimg.rg.ru/img/content/178/22/40/kotik_d_850.jpg');
